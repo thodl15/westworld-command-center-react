@@ -19,31 +19,31 @@ const HostInfo = (props) => {
   return (
     <Grid>
       <Grid.Column width={6}>
-        <Image style={{overflow: "hidden", height: "160px", width: "130px"}} floated='left' size='small' src={ selectedHost.imageUrl }/>
+        <Image style={{overflow: "hidden", height: "160px", width: "130px"}} floated='left' size='small' src={ props.selectedHost.imageUrl }/>
       </Grid.Column>
       <Grid.Column width={10}>
         <Card>
           <Card.Content>
             <Card.Header>
-              {selectedHost.firstName} | { selectedHost.gender ? <Icon name='man' /> : <Icon name='woman' />}
+              {props.selectedHost.firstName} | { props.selectedHost.gender ? <Icon name='man' /> : <Icon name='woman' />}
             </Card.Header>
             <Card.Meta>
-              <Radio style={{margin: "10px"}} slider onChange={toggle} label={"AmIActive?"} checked={selectedHost.active}/>
+              <Radio style={{margin: "10px"}} slider /*onChange={toggle}*/ label={"AmIActive?"} checked={props.selectedHost.active}/>
             </Card.Meta>
 
             <Divider />
             Current Area:
             <Dropdown
               onChange={handleChange}
-              value={/* This is the value of whatever is currently selected. See example below */}
-              {/*
-                Pass an array of objects to 'options' like so:
-                [{key: "area_one" text: "Area One" value: "area_two"}, {key: "area_two" text: "Area Two" value: "area_two"}]
-                The value should be set to whatever you want currently selected. Like "area_two".
-                The dropdown will display whatever corresponds to the test key, like "Area Two".
-                  */}
-              selection
-              options={/* These are your selection options. See above. */}
+              // value={/* This is the value of whatever is currently selected. See example below */}
+              // {/*
+              //   Pass an array of objects to 'options' like so:
+              //   [{key: "area_one" text: "Area One" value: "area_two"}, {key: "area_two" text: "Area Two" value: "area_two"}]
+              //   The value should be set to whatever you want currently selected. Like "area_two".
+              //   The dropdown will display whatever corresponds to the test key, like "Area Two".
+              //     */}
+              // selection
+              // options={/* These are your selection options. See above. */}
             />
           </Card.Content>
         </Card>
