@@ -23,7 +23,7 @@ const LogPanel = () => {
       <pre>
         {dummyLogs().map((log, i) => <p key={i} className={log.type}>{log.msg}</p>)}
       </pre>
-      <Button fluid color={/* This isn't always goin to be the same color...*/}>
+      <Button /*fluid color=This isn't always goin to be the same color...*/>
         {/* And this isn't always going to render the same text...*/}
       </Button>
     </Segment>
