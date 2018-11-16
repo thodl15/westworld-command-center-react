@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Radio, Icon, Card, Grid, Image, Dropdown, Divider } from 'semantic-ui-react'
 
 
-const HostInfo = () => {
+const HostInfo = (props) => {
 
   const handleChange = (e, {value}) => {
     // the 'value' attribute is given via Semantic's Dropdown component.
@@ -19,16 +19,16 @@ const HostInfo = () => {
   return (
     <Grid>
       <Grid.Column width={6}>
-        <Image style={{overflow: "hidden", height: "160px", width: "130px"}} floated='left' size='small' src={ /* pass in the right image here */ }/>
+        <Image style={{overflow: "hidden", height: "160px", width: "130px"}} floated='left' size='small' src={ selectedHost.imageUrl }/>
       </Grid.Column>
       <Grid.Column width={10}>
         <Card>
           <Card.Content>
             <Card.Header>
-              {selectedHost.firstName} | { /* What needs to be true to render the man icon or false to render the woman icon? */ ? <Icon name='man' /> : <Icon name='woman' />}
+              {selectedHost.firstName} | { selectedHost.gender ? <Icon name='man' /> : <Icon name='woman' />}
             </Card.Header>
             <Card.Meta>
-              <Radio style={{margin: "10px"}} slider onChange={toggle} label={"AmIActive?"} checked={/* What happens when I'm checked */}/>
+              <Radio style={{margin: "10px"}} slider onChange={toggle} label={"AmIActive?"} checked={selectedHost.active}/>
             </Card.Meta>
 
             <Divider />
