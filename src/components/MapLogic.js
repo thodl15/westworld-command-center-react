@@ -19,7 +19,6 @@ class MapLogic extends React.Component {
     }
 
     componentDidMount() {
-        console.log("Did Mount!");
         fetch("http://localhost:4000/areas").then(
             data => data.json(),
             error => console.error(error)
