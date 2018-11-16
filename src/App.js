@@ -12,12 +12,33 @@ class App extends Component {
   // But feel free to change them to whatever you want.
   // It's up to you whether they should be stateful or not.
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hosts: []
+    }
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:4000/hosts").then(
+      res => res.json(),
+      error => console.error(error)
+    ).then(
+      data => this.setState({
+        hosts: data
+      })
+    )
+  }
+
   render(){
     return (
       <Segment id='app'>
         {/* What components should go here? Check out Checkpoint 1 of the Readme if you're confused */}
         <MapLogic/>
-        <Headquarters/>
+        <Headquarters
+          hosts = {this.state.hosts}
+        />
       </Segment>
     )
   }
