@@ -10,14 +10,15 @@ import LogPanel    from './LogPanel';
 class Headquarters extends Component {
   // Remember, there's many ways to do this. This doesn't have to be a class component. It's up to you.
 
-
   render(){
     return(
       <Grid celled='internally'>
         <Grid.Column width={8}>
 
         {/* Something goes here.... */}
-        <ColdStorage/>
+        <ColdStorage
+          hosts = {this.props.hosts}
+        />
 
         </Grid.Column>
         <Grid.Column width={5}>
