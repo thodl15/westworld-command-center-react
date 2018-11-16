@@ -1,6 +1,9 @@
 import React from 'react';
 import { Segment } from 'semantic-ui-react'
 
+// Westworld Imports:
+import HostList from './HostList';
+
 const ColdStorage = () => (
   <Segment.Group className="HQComps">
     <Segment compact>
@@ -9,6 +12,7 @@ const ColdStorage = () => (
     <Segment compact>
 
       {/* Cold Storage contains hosts....but how? Directly? Or is there something else we could use to contain them... */}
+      <HostList/>
 
     </Segment>
   </Segment.Group>
