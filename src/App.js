@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Segment } from 'semantic-ui-react';
 
 // Westworld Imports
-import WestWorldMap from './components/WestworldMap';
+import MapLogic     from './components/MapLogic';
 import Headquarters from './components/Headquarters';
 
 
@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <Segment id='app'>
         {/* What components should go here? Check out Checkpoint 1 of the Readme if you're confused */}
-        <WestWorldMap/>
+        <MapLogic/>
         <Headquarters/>
       </Segment>
     )
