@@ -19,7 +19,6 @@ class MapLogic extends React.Component {
         }
 
         this.createAreaList  = this.createAreaList.bind(this);
-        this.waitForHostData = this.waitForHostData.bind(this)
     }
 
     componentDidMount() {
@@ -27,33 +26,12 @@ class MapLogic extends React.Component {
             data => data.json(),
             error => console.error(error)
         ).then(
-            areas => this.waitForHostData(areas)
-        ).then(
             areas => this.setState((state,props) => {
-                // eslint-disable-next-line
-                areas: this.createAreaList(areas)
+                return {
+                    areas: this.createAreaList(areas)
+                }
             })
         );
-    }
-
-    // Set an interval check to ensure that the host
-    // data has been fully process from the server
-    // before beginning to construct the area
-    // components within the application.
-    waitForHostData(areas) {
-        return new Promise((resolve, reject) => {
-            var interval;
-
-            function checkHostData(data) {
-                if(data !== undefined) {
-                    clearInterval(interval);
-                }
-
-                resolve(areas);
-            }
-
-            interval = setInterval(() => checkHostData(this.props.hosts), 0);
-        })
     }
 
     createAreaList(list) {
@@ -61,7 +39,8 @@ class MapLogic extends React.Component {
         list.forEach(element => {
             areaListArray.push(
                 <Area
-                    id = {element.id}
+                    key = { element.id }
+                    area = { element }
                     hosts = { this.props.hosts }
                 />
             )
