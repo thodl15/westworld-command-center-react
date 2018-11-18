@@ -6,7 +6,7 @@ import HostList from './HostList';
 const Area = (props) => (
 
   <div className='area' id={props.area.name}>
-    <h3 className='labels'>{"IPSUM LOREM"}</h3>
+    <h3 className='labels'>{props.printName(props.area.name)}</h3>
 
     <HostList/>
 
