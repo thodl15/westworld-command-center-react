@@ -24,7 +24,13 @@ class Headquarters extends Component {
 
         </Grid.Column>
         <Grid.Column width={5}>
-          <Details />
+          <Details
+            // There will only ever be one output to this
+            // if it exists.
+            selectedHostArr = { this.props.hosts.filter((x) => {
+              return x.id === this.props.selectedHost;
+            }) }
+          />
         </Grid.Column>
         <Grid.Column width={3}>
 
