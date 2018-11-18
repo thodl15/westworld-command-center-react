@@ -13,7 +13,9 @@ const ColdStorage = (props) => (
 
       {/* Cold Storage contains hosts....but how? Directly? Or is there something else we could use to contain them... */}
       <HostListLogic
-        hosts = {props.hosts}
+        hosts = {props.hosts.filter((x) => {
+          return x.active === false;
+        })}
         setSelectedHost = { props.setSelectedHost }
         selectedHost    = { props.selectedHost    }
       />
