@@ -2,7 +2,7 @@ import React from 'react';
 
 // Westworld Imports:
 import HostList from './HostList';
-import HostInfo from './HostInfo';
+import Host from './Host';
 
 class HostListLogic extends React.Component {
     // I want to handle the dynamic creation
@@ -19,9 +19,12 @@ class HostListLogic extends React.Component {
         let hostInfoList = [];
         list.forEach(element => {
             hostInfoList.push(
-                <HostInfo
-                    selectedHost = {element}
+                <Host
+                    host = {element}
                     key = {list.indexOf(element)}
+                    handleClick = { this.props.setSelectedHost }
+                    isSelected =  { element.id === this.props.selectedHost ?
+                                                        " selected" : ""}
                 />
             )
         });
