@@ -15,6 +15,7 @@ const Details = (props) => {
       (<Image size='medium' src={Images.westworldLogo}/>) :
       (<HostInfo
         selectedHost = { selected[0] }
+        toggleActive = { props.toggleActive }
         />)
 
   return(
