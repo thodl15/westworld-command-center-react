@@ -10,6 +10,7 @@ const WestworldMap = (props) => {
   return (
     <Segment id="map" >
       {/* What should we render on the map? */}
+      {props.areaList}
     </Segment>
   )
 }
