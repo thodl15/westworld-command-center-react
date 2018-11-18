@@ -16,8 +16,11 @@ class App extends Component {
     super(props);
 
     this.state = {
-      hosts: []
+      hosts: [],
+      selectedHost: "",
     }
+
+    this.setSelectedHost = this.setSelectedHost.bind(this);
   }
 
   componentDidMount() {
@@ -31,13 +34,23 @@ class App extends Component {
     )
   }
 
+  setSelectedHost(host) {
+    this.setState((state,props) => {
+      return {
+        selectedHost: host.id
+      }
+    })
+  }
+
   render(){
     return (
       <Segment id='app'>
         {/* What components should go here? Check out Checkpoint 1 of the Readme if you're confused */}
         <MapLogic/>
         <Headquarters
-          hosts = {this.state.hosts}
+          hosts           = { this.state.hosts        }
+          setSelectedHost = { this.setSelectedHost    }
+          selectedHost    = { this.state.selectedHost }
         />
       </Segment>
     )
