@@ -51,7 +51,9 @@ class MapLogic extends React.Component {
                 <Area
                     key = { element.id }
                     area = { element }
-                    hosts = { this.props.hosts }
+                    hosts = { this.props.hosts.filter((x) => {
+                        return x.area === element.name && x.active === true;
+                    }) }
                     printName = { this.prettyPrintAreaName }
                 />
             )
