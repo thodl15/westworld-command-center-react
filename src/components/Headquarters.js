@@ -18,6 +18,8 @@ class Headquarters extends Component {
         {/* Something goes here.... */}
         <ColdStorage
           hosts = {this.props.hosts}
+          setSelectedHost = { this.props.setSelectedHost }
+          selectedHost    = { this.props.selectedHost    }
         />
 
         </Grid.Column>
