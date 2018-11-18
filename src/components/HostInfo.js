@@ -28,7 +28,9 @@ const HostInfo = (props) => {
               {props.selectedHost.firstName} | { props.selectedHost.gender ? <Icon name='man' /> : <Icon name='woman' />}
             </Card.Header>
             <Card.Meta>
-              <Radio style={{margin: "10px"}} slider /*onChange={toggle}*/ label={"AmIActive?"} checked={props.selectedHost.active}/>
+              <Radio style={{margin: "10px"}} slider 
+                onChange={() => props.toggleActive(props.selectedHost.id)} 
+                label={"AmIActive?"} checked={props.selectedHost.active}/>
             </Card.Meta>
 
             <Divider />
