@@ -46,7 +46,9 @@ class App extends Component {
     return (
       <Segment id='app'>
         {/* What components should go here? Check out Checkpoint 1 of the Readme if you're confused */}
-        <MapLogic/>
+        <MapLogic
+          hosts = { this.state.hosts }
+        />
         <Headquarters
           hosts           = { this.state.hosts        }
           setSelectedHost = { this.setSelectedHost    }
