@@ -30,6 +30,7 @@ class Headquarters extends Component {
             selectedHostArr = { this.props.hosts.filter((x) => {
               return x.id === this.props.selectedHost;
             }) }
+            toggleActive = { this.props.toggleHostActivity }
           />
         </Grid.Column>
         <Grid.Column width={3}>
