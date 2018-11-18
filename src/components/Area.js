@@ -1,14 +1,18 @@
 import React from 'react';
 
 // Westworld Imports:
-import HostList from './HostList';
+import HostListLogic from './HostListLogic';
 
 const Area = (props) => (
 
   <div className='area' id={props.area.name}>
     <h3 className='labels'>{props.printName(props.area.name)}</h3>
 
-    <HostList/>
+    <HostListLogic
+      hosts = {props.hosts}
+      setSelectedHost = { props.setSelectedHost }
+      selectedHost    = { props.selectedHost    }
+    />
 
   </div>
 
