@@ -22,16 +22,7 @@ class MapLogic extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:4000/areas").then(
-            data => data.json(),
-            error => console.error(error)
-        ).then(
-            areas => this.setState((state,props) => {
-                return {
-                    areas: areas
-                }
-            })
-        );
+        
     }
 
     createAreaList(list) {
@@ -64,7 +55,7 @@ class MapLogic extends React.Component {
                 // before the host data completed, it would not
                 // update within the precomputed area list
                 // whenever the data updated further up the tree.
-                areaList = { this.createAreaList(this.state.areas) }
+                areaList = { this.createAreaList(this.props.areas) }
             />
         );
     }

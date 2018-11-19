@@ -17,6 +17,7 @@ class App extends Component {
 
     this.state = {
       hosts: [],
+      areas: [],
       selectedHost: "",
     }
 
@@ -32,7 +33,18 @@ class App extends Component {
       data => this.setState({
         hosts: data
       })
-    )
+    );
+
+    fetch("http://localhost:4000/areas").then(
+            data => data.json(),
+            error => console.error(error)
+        ).then(
+            areas => this.setState((state,props) => {
+                return {
+                    areas: areas
+                }
+            })
+        );
   }
 
   setSelectedHost(host) {
@@ -63,6 +75,7 @@ class App extends Component {
         {/* What components should go here? Check out Checkpoint 1 of the Readme if you're confused */}
         <MapLogic
           hosts = { this.state.hosts }
+          areas = { this.state.areas }
           setSelectedHost = { this.setSelectedHost }
           selectedHost    = { this.state.selectedHost }
         />
