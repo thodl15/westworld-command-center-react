@@ -25,6 +25,7 @@ class App extends Component {
     this.toggleHostActivity = this.toggleHostActivity.bind(this);
     this.doesAreaHaveSpace  = this.doesAreaHaveSpace.bind(this);
     this.changeHostLocation = this.changeHostLocation.bind(this);
+    this.moveAllHosts       = this.moveAllHosts.bind(this);
   }
 
   componentDidMount() {
@@ -97,6 +98,19 @@ class App extends Component {
     })
   }
 
+  moveAllHosts(activeStatus) {
+    this.setState((state, props) => {
+      for(var i=0; i < state.hosts.length; ++i) {
+        if(state.hosts[i].active !== activeStatus) {
+          state.hosts[i].active = activeStatus;
+        }
+      }
+      return {
+        hosts: state.hosts
+      }
+    })
+  }
+
   render(){
     return (
       <Segment id='app'>
@@ -115,6 +129,7 @@ class App extends Component {
           toggleHostActivity = { this.toggleHostActivity }
           changeLoc          = { this.changeHostLocation }
           areaSpace          = { this.doesAreaHaveSpace  }
+          moveAllHosts       = { this.moveAllHosts       }
         />
       </Segment>
     )

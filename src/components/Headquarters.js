@@ -39,7 +39,19 @@ class Headquarters extends Component {
         <Grid.Column width={3}>
 
         {/* and here. Take visual cues from the screenshot/video in the Readme. */}
-        <LogPanel/>
+        <LogPanel
+          {...(this.props.hosts.filter(x => !x.active).length > 0 ? {
+            color: "red",
+            btnText: "Activate All",
+            sendOrRec: true
+          } : {
+            color: "green",
+            btnText: "Decommission All",
+            sendOrRec: false
+          })}
+
+          moveAllHosts = { this.props.moveAllHosts }
+        />
 
         </Grid.Column>
       </Grid>
