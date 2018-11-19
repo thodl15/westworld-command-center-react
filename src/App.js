@@ -23,6 +23,7 @@ class App extends Component {
 
     this.setSelectedHost = this.setSelectedHost.bind(this);
     this.toggleHostActivity = this.toggleHostActivity.bind(this);
+    this.changeHostLocation = this.changeHostLocation.bind(this);
   }
 
   componentDidMount() {
@@ -69,6 +70,21 @@ class App extends Component {
     });
   }
 
+  changeHostLocation(id, newLoc) {
+    console.log("Attempting to Change Location");
+    this.setState((state, props) => {
+      for(var i=0; i < state.hosts.length; ++i) {
+        if(state.hosts[i].id === id) {
+          state.hosts[i].area = newLoc;
+          break;
+        }
+      }
+      return {
+        hosts: state.hosts
+      }
+    })
+  }
+
   render(){
     return (
       <Segment id='app'>
@@ -81,9 +97,11 @@ class App extends Component {
         />
         <Headquarters
           hosts           = { this.state.hosts        }
+          areas           = { this.state.areas        }
           setSelectedHost = { this.setSelectedHost    }
           selectedHost    = { this.state.selectedHost }
           toggleHostActivity = { this.toggleHostActivity }
+          changeLoc          = { this.changeHostLocation }
         />
       </Segment>
     )
