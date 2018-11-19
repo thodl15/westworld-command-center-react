@@ -33,6 +33,7 @@ class Headquarters extends Component {
             toggleActive = { this.props.toggleHostActivity }
             areas = { this.props.areas }
             changeLoc = { this.props.changeLoc }
+            areaSpace = { this.props.areaSpace }
           />
         </Grid.Column>
         <Grid.Column width={3}>

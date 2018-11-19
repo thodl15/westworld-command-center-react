@@ -18,6 +18,7 @@ const Details = (props) => {
         toggleActive = { props.toggleActive }
         areaList     = { props.areas }
         changeLoc    = { props.changeLoc }
+        areaSpace    = { props.areaSpace }
       />)
 
   return(
