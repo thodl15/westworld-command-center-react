@@ -34,16 +34,6 @@ class MapLogic extends React.Component {
         );
     }
 
-    prettyPrintAreaName(label) {
-        let output = [];
-        let nameArray = label.split("_");
-        nameArray.forEach(str => {
-            let first = str.charAt(0);
-            output.push(str.replace(first, first.toUpperCase()));
-        });
-        return output.join(" ");
-    }
-
     createAreaList(list) {
         let areaListArray = [];
         list.forEach(element => {
@@ -54,7 +44,6 @@ class MapLogic extends React.Component {
                     hosts = { this.props.hosts.filter(x => {
                         return x.area === element.name && x.active === true;
                     }) }
-                    printName = { this.prettyPrintAreaName }
                     setSelectedHost = { this.props.setSelectedHost }
                     selectedHost    = { this.props.selectedHost }
                 />
