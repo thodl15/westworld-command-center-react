@@ -23,6 +23,7 @@ class App extends Component {
 
     this.setSelectedHost = this.setSelectedHost.bind(this);
     this.toggleHostActivity = this.toggleHostActivity.bind(this);
+    this.doesAreaHaveSpace  = this.doesAreaHaveSpace.bind(this);
     this.changeHostLocation = this.changeHostLocation.bind(this);
   }
 
@@ -70,8 +71,19 @@ class App extends Component {
     });
   }
 
+  // Check to see if there is space
+  // within the area to add a host.
+  doesAreaHaveSpace(location) {
+    for(var i=0; i < this.state.areas.length; ++i) {
+      if(this.state.areas[i].name === location) {
+        return this.state.hosts.filter((x) => {
+          return x.area === location;
+        }).length < this.state.areas[i].limit;
+      }
+    }
+  }
+
   changeHostLocation(id, newLoc) {
-    console.log("Attempting to Change Location");
     this.setState((state, props) => {
       for(var i=0; i < state.hosts.length; ++i) {
         if(state.hosts[i].id === id) {
@@ -102,6 +114,7 @@ class App extends Component {
           selectedHost    = { this.state.selectedHost }
           toggleHostActivity = { this.toggleHostActivity }
           changeLoc          = { this.changeHostLocation }
+          areaSpace          = { this.doesAreaHaveSpace  }
         />
       </Segment>
     )
