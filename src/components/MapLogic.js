@@ -45,8 +45,6 @@ class MapLogic extends React.Component {
 
 
     render() {
-        console.log(this.createAreaList(this.state.areas));
-        // console.log(this.props.hosts);
         return (
             <WestworldMap
                 // I would rather build the objects once and just
