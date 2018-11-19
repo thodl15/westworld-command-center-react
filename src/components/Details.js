@@ -16,7 +16,9 @@ const Details = (props) => {
       (<HostInfo
         selectedHost = { selected[0] }
         toggleActive = { props.toggleActive }
-        />)
+        areaList     = { props.areas }
+        changeLoc    = { props.changeLoc }
+      />)
 
   return(
     <Segment id="details" className="HQComps">
