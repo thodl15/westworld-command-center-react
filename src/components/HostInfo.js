@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Radio, Icon, Card, Grid, Image, Dropdown, Divider } from 'semantic-ui-react'
 
+// Westworld Imports:
+import { prettyPrintAreaName } from './Util';
+
 
 const HostInfo = (props) => {
 
@@ -13,6 +16,7 @@ const HostInfo = (props) => {
     // See the Semantic docs for more info: https://react.semantic-ui.com/modules/dropdown/#usage-controlled
 
     // Also, there's more info on this below
+    props.changeLoc(props.selectedHost.id, value);
   }
 
 
@@ -30,22 +34,28 @@ const HostInfo = (props) => {
             <Card.Meta>
               <Radio style={{margin: "10px"}} slider 
                 onChange={() => props.toggleActive(props.selectedHost.id)} 
-                label={"AmIActive?"} checked={props.selectedHost.active}/>
+                label={"Am I Active?"} checked={props.selectedHost.active}/>
             </Card.Meta>
 
             <Divider />
             Current Area:
             <Dropdown
               onChange={handleChange}
-              // value={/* This is the value of whatever is currently selected. See example below */}
+              value={ props.selectedHost.area }
               // {/*
               //   Pass an array of objects to 'options' like so:
               //   [{key: "area_one" text: "Area One" value: "area_two"}, {key: "area_two" text: "Area Two" value: "area_two"}]
               //   The value should be set to whatever you want currently selected. Like "area_two".
               //   The dropdown will display whatever corresponds to the test key, like "Area Two".
               //     */}
-              // selection
-              // options={/* These are your selection options. See above. */}
+              selection
+              options={ props.areaList.map(x => {
+                return { 
+                  key: x.name,
+                  text: prettyPrintAreaName(x.name),
+                  value: x.name,
+                };
+              })}
             />
           </Card.Content>
         </Card>
