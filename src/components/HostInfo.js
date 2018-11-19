@@ -16,7 +16,11 @@ const HostInfo = (props) => {
     // See the Semantic docs for more info: https://react.semantic-ui.com/modules/dropdown/#usage-controlled
 
     // Also, there's more info on this below
-    props.changeLoc(props.selectedHost.id, value);
+    if(props.areaSpace(value)) {
+      props.changeLoc(props.selectedHost.id, value);
+    } else {
+      console.error("Unable to move host: Not enough space.");
+    }
   }
 
 
