@@ -31,6 +31,8 @@ class Headquarters extends Component {
               return x.id === this.props.selectedHost;
             }) }
             toggleActive = { this.props.toggleHostActivity }
+            areas = { this.props.areas }
+            changeLoc = { this.props.changeLoc }
           />
         </Grid.Column>
         <Grid.Column width={3}>
