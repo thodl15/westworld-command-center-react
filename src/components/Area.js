@@ -2,11 +2,12 @@ import React from 'react';
 
 // Westworld Imports:
 import HostListLogic from './HostListLogic';
+import { prettyPrintAreaName } from './Util';
 
 const Area = (props) => (
 
   <div className='area' id={props.area.name}>
-    <h3 className='labels'>{props.printName(props.area.name)}</h3>
+    <h3 className='labels'>{prettyPrintAreaName(props.area.name)}</h3>
 
     <HostListLogic
       hosts = {props.hosts}
