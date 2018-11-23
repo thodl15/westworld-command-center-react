@@ -34,6 +34,7 @@ class Headquarters extends Component {
             areas = { this.props.areas }
             changeLoc = { this.props.changeLoc }
             areaSpace = { this.props.areaSpace }
+            addLogEntry = { this.props.addLogEntry }
           />
         </Grid.Column>
         <Grid.Column width={3}>
@@ -51,6 +52,7 @@ class Headquarters extends Component {
           })}
 
           moveAllHosts = { this.props.moveAllHosts }
+          logs = { this.props.logs }
         />
 
         </Grid.Column>

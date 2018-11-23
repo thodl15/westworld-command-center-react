@@ -19,6 +19,7 @@ const Details = (props) => {
         areaList     = { props.areas }
         changeLoc    = { props.changeLoc }
         areaSpace    = { props.areaSpace }
+        addLogEntry  = { props.addLogEntry }
       />)
 
   return(

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Segment } from 'semantic-ui-react';
+import { Log     } from './services/Log';
 
 // Westworld Imports
 import MapLogic     from './components/MapLogic';
 import Headquarters from './components/Headquarters';
+import { prettyPrintAreaName } from './components/Util';
 
 
 class App extends Component {
@@ -18,6 +20,7 @@ class App extends Component {
     this.state = {
       hosts: [],
       areas: [],
+      logs:  [],
       selectedHost: "",
     }
 
@@ -26,6 +29,7 @@ class App extends Component {
     this.doesAreaHaveSpace  = this.doesAreaHaveSpace.bind(this);
     this.changeHostLocation = this.changeHostLocation.bind(this);
     this.moveAllHosts       = this.moveAllHosts.bind(this);
+    this.addLogEntry        = this.addLogEntry.bind(this);
   }
 
   componentDidMount() {
@@ -63,11 +67,24 @@ class App extends Component {
       for(var i=0; i < state.hosts.length; ++i) {
         if(state.hosts[i].id === id) {
           state.hosts[i].active = !state.hosts[i].active;
+          if(state.hosts[i].active) {
+            // TODO (David):
+            // Set Log for Activating a Host
+            // this.addLogEntry(Log.)
+            let warnMsg = `Activated ${state.hosts[i].firstName}`;
+            state.logs.unshift(Log.warn(warnMsg));
+          } else {
+            // TODO (David):
+            // Set Log for Deactivating a Host
+            let notifyMsg = `Decommissioned ${state.hosts[i].firstName}`;
+            state.logs.unshift(Log.notify(notifyMsg));
+          }
           break;
         }
       }
       return {
-        hosts: state.hosts
+        hosts: state.hosts,
+        logs:  state.logs,
       }
     });
   }
@@ -88,12 +105,19 @@ class App extends Component {
     this.setState((state, props) => {
       for(var i=0; i < state.hosts.length; ++i) {
         if(state.hosts[i].id === id) {
+          // TODO (David):
+          // Add Log statement here (1.)
+          
           state.hosts[i].area = newLoc;
+          let notifyMsg = `${state.hosts[i].firstName} set in ` +
+                          `area ${prettyPrintAreaName(newLoc)}`
+          state.logs.unshift(Log.notify(notifyMsg));
           break;
         }
       }
       return {
-        hosts: state.hosts
+        hosts: state.hosts,
+        logs: state.logs,
       }
     })
   }
@@ -105,8 +129,35 @@ class App extends Component {
           state.hosts[i].active = activeStatus;
         }
       }
+      if(activeStatus) {
+        // TODO (David):
+        // Add Log for activating all hosts.
+        let warnMsg = `Activating all hosts!`;
+        state.logs.unshift(Log.warn(warnMsg));
+      } else {
+        // TODO (David):
+        // Add Log for decommissioning all hosts.
+        let notifyMsg = `Decommissioning all hosts.`;
+        state.logs.unshift(Log.notify(notifyMsg));
+      }
       return {
-        hosts: state.hosts
+        hosts: state.hosts,
+        logs: state.logs,
+      }
+    })
+  }
+
+  addLogEntry(logEntry) {
+    // There *really* should be some type checking to ensure
+    // that random objects aren't being thrown into the log,
+    // but for the time being we can ignore that for
+    // simplicity's sake.
+    //
+    // Maybe look to integrate TypeScript to ensure types?
+    this.setState((state,props) => {
+      state.logs.unshift(logEntry);
+      return {
+        logs: state.logs
       }
     })
   }
@@ -130,6 +181,8 @@ class App extends Component {
           changeLoc          = { this.changeHostLocation }
           areaSpace          = { this.doesAreaHaveSpace  }
           moveAllHosts       = { this.moveAllHosts       }
+          addLogEntry        = { this.addLogEntry        }
+          logs               = { this.state.logs         }
         />
       </Segment>
     )

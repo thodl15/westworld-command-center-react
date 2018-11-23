@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Radio, Icon, Card, Grid, Image, Dropdown, Divider } from 'semantic-ui-react'
+import { Log } from './../services/Log';
 
 // Westworld Imports:
 import { prettyPrintAreaName } from './Util';
@@ -19,7 +20,10 @@ const HostInfo = (props) => {
     if(props.areaSpace(value)) {
       props.changeLoc(props.selectedHost.id, value);
     } else {
-      console.error("Unable to move host: Not enough space.");
+      let errMsg = `Cannot add ${props.selectedHost.firstName} to ` +
+      `${prettyPrintAreaName(value)}.`;
+
+      props.addLogEntry(Log.error(errMsg));
     }
   }
 
@@ -33,7 +37,7 @@ const HostInfo = (props) => {
         <Card>
           <Card.Content>
             <Card.Header>
-              {props.selectedHost.firstName} | { props.selectedHost.gender ? <Icon name='man' /> : <Icon name='woman' />}
+              {props.selectedHost.firstName} | { props.selectedHost.gender === 'Male' ? <Icon name='man' /> : <Icon name='woman' />}
             </Card.Header>
             <Card.Meta>
               <Radio style={{margin: "10px"}} slider 
